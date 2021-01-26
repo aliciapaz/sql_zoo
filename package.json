@@ -1,0 +1,25 @@
+{
+  "name": "sql_zoo",
+  "version": "1.0.0",
+  "description": "SQL project for learning purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliciapaz/sql_zoo.git"
+  },
+  "keywords": [
+    "sql"
+  ],
+  "author": "aliciapaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aliciapaz/sql_zoo/issues"
+  },
+  "homepage": "https://github.com/aliciapaz/sql_zoo#readme",
+  "devDependencies": {
+    "sql-formatter": "^4.0.0-beta.3"
+  }
+}
