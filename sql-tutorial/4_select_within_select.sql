@@ -88,7 +88,8 @@ SELECT
 FROM
   world
 WHERE
-  continent = 'Europe' -- Show the name of the countries that have a GDP greater than every country in Europe. Some countries may have NULL gdp values
+  continent = 'Europe';
+ -- Show the name of the countries that have a GDP greater than every country in Europe. Some countries may have NULL gdp values
 SELECT
   name
 FROM
