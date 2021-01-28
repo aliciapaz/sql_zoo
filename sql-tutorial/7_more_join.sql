@@ -112,3 +112,85 @@ FROM
 WHERE
   yr = 1962
   AND ord = 1;
+-- Show the year and the number of movies he made each year for any year in which 'Rock Hudson' made more than 2 movies
+SELECT
+  yr,
+  COUNT(title)
+FROM
+  movie
+  JOIN casting ON movie.id = movieid
+  JOIN actor ON actorid = actor.id
+WHERE
+  name = 'Rock Hudson'
+GROUP BY
+  yr
+HAVING
+  COUNT(title) > 2;
+-- List the film title and the leading actor for all of the films 'Julie Andrews' played in
+SELECT
+  title,
+  name
+FROM
+  movie
+  JOIN casting ON (id = movieid)
+  JOIN actor ON (actorid = actor.id)
+WHERE
+  movieid IN(
+    SELECT
+      movieid
+    FROM
+      movie
+      JOIN casting ON(id = movieid)
+      JOIN actor ON (actorid = actor.id)
+    WHERE
+      name = 'Julie Andrews'
+  )
+  AND ord = 1;
+-- Obtain a list, in alphabetical order, of actors who've had at least 15 starring roles
+SELECT
+  name
+FROM
+  actor
+  JOIN casting ON (actor.id = actorid)
+  JOIN movie ON (movie.id = movieid)
+WHERE
+  ord = 1
+GROUP BY
+  name
+HAVING
+  count(name) >= 15
+ORDER BY
+  name;
+-- List the films released in the year 1978 ordered by the number of actors in the cast, then by title
+SELECT
+  title,
+  count(actorid)
+FROM
+  movie
+  JOIN casting ON (movieid = movie.id)
+  JOIN actor ON (actorid = actor.id)
+WHERE
+  yr = 1978
+GROUP BY
+  title
+ORDER BY
+  (count(actorid)) DESC,
+  title;
+-- List all the people who have worked with 'Art Garfunkel'
+SELECT
+  name
+FROM
+  movie
+  JOIN casting ON (movieid = movie.id)
+  JOIN actor ON (actorid = actor.id)
+WHERE
+  name != 'Art Garfunkel'
+  AND movieid IN (
+    SELECT
+      movieid
+    FROM
+      casting
+      JOIN actor ON (actorid = actor.id)
+    WHERE
+      name = 'Art Garfunkel'
+  );
